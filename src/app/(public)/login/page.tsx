@@ -60,20 +60,35 @@ export default function LoginPage() {
         />
     </div>
 
-    {/* Placeholder botón */}
-    <p className="text-[#A1A1A1] text-center text-xs">Botón pendiente</p>
+   {/* Mensaje de error global */}
+{error && (
+    <p className="text-red-400 text-[11px] text-center uppercase tracking-widest">
+        {error}
+    </p>
+)}
+
+{/* Botón submit */}
+<button
+    type="submit"
+    disabled={loading}
+    className="w-full bg-white text-black font-bold py-3.5 rounded-[6px] text-[11px] uppercase tracking-widest mt-4 hover:bg-white/90 disabled:opacity-50 transition-all"
+>
+    {loading ? 'Iniciando...' : 'Iniciar Sesión'}
+</button>
+
+{/* Divider */}
+<div className="border-t border-[#2C2C2C] my-2" />
+
+{/* Link a registro */}
+<p className="text-center">
+    <Link
+        href="/register"
+        className="text-[10px] font-bold text-[#A1A1A1] uppercase tracking-widest hover:text-white transition-colors"
+    >
+        Registrarse Ahora
+    </Link>
+</p>
 </form>
-
-                {/* Footer */}
-                <div className="mt-8 text-center">
-                    <p className="text-[#A1A1A1] text-[10px] uppercase font-bold tracking-widest">
-                        ¿No tienes una cuenta?{' '}
-                        <Link href="/register" className="text-[#3373FF] hover:underline">
-
-                            Regístrate
-                        </Link>
-                    </p>    
-                </div>
             </div>
         </div>
     );
