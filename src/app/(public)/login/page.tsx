@@ -14,6 +14,24 @@ export default function LoginPage() {
     const { login } = useAuth();
     const router = useRouter();
 
+    const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !password) {
+        setError('Por favor completa todos los campos.');
+        return;
+    }
+    setError('');
+    setLoading(true);
+    try {
+        const { access_token } = await loginUser({ email, password });
+        login(access_token, email);
+        router.push('/feed');
+    } catch {
+        setError('Email o contraseña incorrectos.');
+    } finally {
+        setLoading(false);
+    }
+};
     return (
         <div className="min-h-screen bg-black relative flex items-center justify-center p-6 overflow-hidden">
             {/* Fondo Horizon */}
@@ -31,7 +49,9 @@ export default function LoginPage() {
                     </p>
                 </div>
 
-                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-6" onSubmit={handleSubmit}>
+
+
     {/* Campo Email */}
     <div className="space-y-2">
         <label className="text-[10px] font-bold text-[#A1A1A1] uppercase tracking-widest">
