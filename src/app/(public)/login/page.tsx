@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { loginUser } from './services/login.service';
 import { loginUser, getUserByEmail } from './services/login.service';
+import { useState, useEffect } from 'react';
+
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -14,6 +16,22 @@ export default function LoginPage() {
     const [error, setError] = useState('');
     const { login } = useAuth();
     const router = useRouter();
+
+    const { isAuthenticated, isLoading: authLoading } = useAuth();
+
+useEffect(() => {
+    if (!authLoading && isAuthenticated) {
+        router.push('/feed');
+    }
+}, [isAuthenticated, authLoading, router]);
+
+if (authLoading) {
+    return (
+        <div className="min-h-screen bg-black flex items-center justify-center">
+            <span className="text-[#A1A1A1] text-[10px] uppercase tracking-widest">Cargando...</span>
+        </div>
+    );
+}
 
     const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -114,3 +132,5 @@ export default function LoginPage() {
         </div>
     );
 }   
+
+}
