@@ -95,6 +95,65 @@ export default function Navbar() {
                     )}
                 </div>
             </div>
+            {/* Sidebar Modal de Perfil */}
+            {sidebarOpen && (
+                <>
+                    {/* Overlay con blur */}
+                    <div
+                        className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+                        onClick={() => setSidebarOpen(false)}
+                    />
+
+                    {/* Panel lateral */}
+                    <div className="fixed top-0 right-0 h-full w-80 z-50 bg-[#0A0A0A] border-l border-[#2C2C2C] p-12 flex flex-col gap-8">
+                        {/* Cerrar */}
+                        <button
+                            onClick={() => setSidebarOpen(false)}
+                            className="self-end text-[#A1A1A1] hover:text-white transition-colors"
+                        >
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M6 18L18 6M6 6l12 12"
+                                />
+                            </svg>
+                        </button>
+
+                        {/* Info usuario */}
+                        <div className="flex flex-col gap-2">
+                            <div className="w-12 h-12 rounded-full bg-[#335bff] flex items-center justify-center text-white text-lg font-bold uppercase">
+                                {user?.name?.charAt(0) || 'U'}
+                            </div>
+                            <p className="text-white font-bold uppercase tracking-tighter text-xl mt-2">
+                                {user?.name || 'Usuario'}
+                            </p>
+                            <p className="text-[#A1A1A1] text-[10px] uppercase tracking-widest">{user?.email || ''}</p>
+                            <p className="text-[#335bff] text-[10px] font-bold uppercase tracking-widest mt-1">
+                                {user?.total_points || 0} XP
+                            </p>
+                        </div>
+
+                        {/* Divider */}
+                        <div className="border-t border-[#2C2C2C]" />
+
+                        {/* Mini biblioteca placeholder */}
+                        <div className="flex flex-col gap-3">
+                            <p className="text-[10px] font-bold uppercase tracking-widest text-[#A1A1A1]">
+                                Mi Biblioteca
+                            </p>
+                            <p className="text-[#A1A1A1] text-xs">Sin juegos aún</p>
+                        </div>
+
+                        {/* Spacer */}
+                        <div className="flex-1" />
+
+                        {/* Logout */}
+                        <LogoutButton onClose={() => setSidebarOpen(false)} />
+                    </div>
+                </>
+            )}
         </header>
     );
 }
