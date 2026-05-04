@@ -34,6 +34,8 @@ export type Game = {
     genre: string;
     origin_platform: string;
     created_at: string;
+    cover_url?: string;
+    banner_url?: string;
 };
 
 export type CreateGameDto = {
