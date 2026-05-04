@@ -3,10 +3,13 @@
 
 import Link from 'next/link';
 
+import { useState } from 'react';
+
 import { useAuth } from '@/context/AuthContext';
 
 export default function Navbar() {
     const { isAuthenticated, user } = useAuth();
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-black/95 backdrop-blur-md border-b border-[#2C2C2C]">
@@ -67,7 +70,10 @@ export default function Navbar() {
                             </div>
 
                             {/* Avatar placeholder — sidebar se agrega luego */}
-                            <button className="w-8 h-8 rounded-full bg-[#335bff] flex items-center justify-center text-white text-xs font-bold uppercase">
+                            <button
+                                onClick={() => setSidebarOpen(true)}
+                                className="w-8 h-8 rounded-full bg-[#335bff] flex items-center justify-center text-white text-xs font-bold uppercase hover:opacity-80 transition-opacity"
+                            >
                                 {user?.name?.charAt(0) || 'U'}
                             </button>
                         </>
