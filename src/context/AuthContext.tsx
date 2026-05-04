@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
-import type { User } from '@/types';
+import type { User } from '../types';
 
 type AuthContextType = {
     token: string | null;
@@ -53,9 +53,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     };
 
     return (
-        <AuthContext.Provider
-            value={{ token, user, isAuthenticated: !!token, isLoading, login, logout }}
-        >
+        <AuthContext.Provider value={{ token, user, isAuthenticated: !!token, isLoading, login, logout }}>
             {children}
         </AuthContext.Provider>
     );
