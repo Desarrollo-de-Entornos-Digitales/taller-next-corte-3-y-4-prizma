@@ -2,8 +2,10 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+
+import LoadingSpinner from '../components/LoadingSpinner';
+
 import { useAuth } from '@/context/AuthContext';
-import LoadingSpinner from '@/common/components/LoadingSpinner';
 
 export default function Home() {
     const { isAuthenticated, isLoading } = useAuth();
