@@ -1,12 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
-import { loginUser } from './services/login.service';
 import { loginUser, getUserByEmail } from './services/login.service';
-import { useState, useEffect } from 'react';
 
 
 export default function LoginPage() {
